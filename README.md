@@ -50,7 +50,7 @@ The output is quite surprising:
 | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-ga`                     | `1.0.0-sp`                     |
 | `1.0.0-release`                | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0`                        |
 
-7 implementations, 7 truths. 
+7 implementations, 6 truths, only SemVer and ModuleDescriptor.Version are equal (following the specs).  
 
 * There are two different implementations inside the Gradle API (both within internal packages, so not for publis use), returning different results
 * SemVer follows the specification strictly, but the two biggest frameworks in that area (Maven+Gradle) decided to do something on top. Gradle [explained that also in its docu](https://docs.gradle.org/current/userguide/single_versions.html#version_ordering).
