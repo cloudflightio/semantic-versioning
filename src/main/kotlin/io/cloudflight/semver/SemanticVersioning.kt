@@ -18,7 +18,7 @@ private val versions = listOf(
     "1.0.0-rc.1",
     "1.0.0-ga",
     "1.0.0-milestone.1.0+2cc3321",
-    "1.0.0-rc.1.9+4cc4322",
+    "1.0.0-rc.1.10+4cc4322",
 )
 
 const val COLUMN_WIDTH = 30

@@ -26,7 +26,7 @@ Consider the following list of versions:
 * `1.0.0-rc.1`
 * `1.0.0-ga`
 * `1.0.0-milestone.1.0+2cc3321`
-* `1.0.0-rc.1.9+4cc4322`
+* `1.0.0-rc.1.10+4cc4322`
 
 Inside this repository you find the class [SemanticVersioning.kt](src/main/kotlin/io/cloudflight/semver/SemanticVersioning.kt) which converts those Strings to 
 sortable objects using the above-mentioned classes and prints those sorted lists (ascending) to a table.
@@ -38,10 +38,10 @@ The output is quite surprising:
 | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-final`                  | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-SNAPSHOT`               |
 | `1.0.0-rc.1`                   | `1.0.0-ga`                     | `1.0.0-rc.1`                   | `1.0.0-final`                  |
 | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-ga`                     |
-| `1.0.0-rc.1.9+4cc4322`         | `1.0.0-rc.1`                   | `1.0.0-rc.1.9+4cc4322`         | `1.0.0-milestone.1.0+2cc3321`  |
-| `1.0.0-SNAPSHOT`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-SNAPSHOT`               | `1.0.0-rc.1`                   |
-| `1.0.0-snapshot`               | `1.0.0-rc.1.9+4cc4322`         | `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         |
-| `1.0.0`                        | `1.0.0-release`                | `1.0.0-final`                  | `1.0.0-rc.1.9+4cc4322`         |
+| `1.0.0-rc.1.10+4cc4322`        | `1.0.0-rc.1`                   | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-milestone.1.0+2cc3321`  |
+| `1.0.0-SNAPSHOT`               | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-SNAPSHOT`               | `1.0.0-rc.1`                   |
+| `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         |
+| `1.0.0`                        | `1.0.0-release`                | `1.0.0-final`                  | `1.0.0-rc.1.10+4cc4322`        |
 | `1.0.0-final`                  | `1.0.0-SNAPSHOT`               | `1.0.0-ga`                     | `1.0.0-release`                |
 | `1.0.0-ga`                     | `1.0.0-snapshot`               | `1.0.0-release`                | `1.0.0-snapshot`               |
 | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     |
