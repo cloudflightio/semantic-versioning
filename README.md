@@ -47,7 +47,7 @@ The output is quite surprising:
 | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     |
 | `1.0.0-release`                | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        |
 
-4 implementation, 4 truths. 
+4 implementations, 4 truths. 
 
 * There are two different implementation inside the Gradle API, returning different results
 * SemVer follows the specification strictly, but the two biggest frameworks in that area (Maven+Gradle) decided to do something on top. Gradle [explained that also in its docu](https://docs.gradle.org/current/userguide/single_versions.html#version_ordering).
