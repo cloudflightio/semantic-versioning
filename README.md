@@ -6,10 +6,10 @@ which raised [another issue](https://github.com/zafarkhaja/jsemver/issues/62) an
 
 First, there would be [an official specification](https://semver.org/), but just like with SQL there exist multiple implementations:
 
-* **Maven-Artifact**, using the class `org.apache.maven.artifact.versioning.ComparableVersion` from `org.apache.maven:maven-artifact`
-* **Gradle VersionNumber**, using the method `org.gradle.util.internal.VersionNumber.parse` from the official `gradleApi()`
+* **Maven-Artifact**, using the class `org.apache.maven.artifact.versioning.ComparableVersion` from `org.apache.maven:maven-artifact` (version `3.5.0`)
+* **Gradle VersionNumber**, using the method `org.gradle.util.internal.VersionNumber.parse` from the official `gradleApi()` (version `7.5.1`)
 * **Gradle Ivy VersionInfo**, another implementation from the same `gradleApi()`, using `org.gradle.api.internal.artifacts.ivyservice.ivyresolve.VersionInfo` and `org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.DefaultVersionComparator`
-* **SemVer**, using the class `com.github.zafarkhaja.semver.Version` from `com.github.zafarkhaja:java-semver`, a library used by i.e. the Reckon-Plugin mentioned above, following the specification strictly. 
+* **SemVer**, using the class `com.github.zafarkhaja.semver.Version` from `com.github.zafarkhaja:java-semver` (version `0.9.0`), a library used by i.e. the Reckon-Plugin mentioned above, following the specification strictly. 
 
 Each of these implementations can parse a `String` and give you the possibility to sort any semantic version. While they 
 all agree on the basics (i.e. `0.9.1` < `1.0.0` < `10.0.0`), there are differences especially when using version classifiers like `-rc`, or `-SNAPSHOT`.
