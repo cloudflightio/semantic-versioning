@@ -11,7 +11,8 @@ First, there would be [an official specification](https://semver.org/), but just
 * **Gradle Ivy VersionInfo**, another implementation from the same `gradleApi()`, using `org.gradle.api.internal.artifacts.ivyservice.ivyresolve.VersionInfo` and `org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.DefaultVersionComparator`
 * **SemVer**, using the class `com.github.zafarkhaja.semver.Version` from `com.github.zafarkhaja:java-semver` (version `0.9.0`), a library used by i.e. the Reckon-Plugin mentioned above, following the specification strictly. 
 * **semver4j**, using the class `com.github.zafarkhaja.semver.Version` from `com.vdurmont:semver4j` (version `3.1.0`) 
-* **versioncompare**, using the class `io.github.g00fy2.versioncompare.Version` from `io.github.g00fy2:versioncompare` (version `1.5.0`) 
+* **versioncompare**, using the class `io.github.g00fy2.versioncompare.Version` from `io.github.g00fy2:versioncompare` (version `1.5.0`)
+* **ModuleDescriptor.Version**, using `java.lang.module.ModuleDescriptor.Version.parse` from JDK 9
 
 Each of these implementations can parse a `String` and give you the possibility to sort any semantic version. While they 
 all agree on the basics (i.e. `0.9.1` < `1.0.0` < `10.0.0`), there are differences especially when using version classifiers like `-rc`, or `-SNAPSHOT`.
@@ -35,21 +36,21 @@ sortable objects using the above-mentioned classes and prints those sorted lists
 
 The output is quite surprising:
 
-| Maven-Artifact                 | Gradle VersionNumber           | Gradle Ivy-VersionInfo         | SemVer                         | semver4j                       | versioncompare                 |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-final`                  | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-SNAPSHOT`               | `1.0.0-final`                  | `1.0.0-SNAPSHOT`               |
-| `1.0.0-rc.1`                   | `1.0.0-ga`                     | `1.0.0-rc.1`                   | `1.0.0-final`                  | `1.0.0-ga`                     | `1.0.0-snapshot`               |
-| `1.0.0-rc.1.8+3bb4161`         | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-ga`                     | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1.8+3bb4161`         |
-| `1.0.0-rc.1.10+4cc4322`        | `1.0.0-rc.1`                   | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1`                   | `1.0.0-rc.1`                   |
-| `1.0.0-SNAPSHOT`               | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-SNAPSHOT`               | `1.0.0-rc.1`                   | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-rc.1.10+4cc4322`        |
-| `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-rc.1.10+4cc4322`        | `1.0.0`                        |
-| `1.0.0`                        | `1.0.0-release`                | `1.0.0-final`                  | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-release`                | `1.0.0-sp`                     |
-| `1.0.0-final`                  | `1.0.0-SNAPSHOT`               | `1.0.0-ga`                     | `1.0.0-release`                | `1.0.0-snapshot`               | `1.0.0-release`                |
-| `1.0.0-ga`                     | `1.0.0-snapshot`               | `1.0.0-release`                | `1.0.0-snapshot`               | `1.0.0-SNAPSHOT`               | `1.0.0-final`                  |
-| `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-ga`                     |
-| `1.0.0-release`                | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0-milestone.1.0+2cc3321`  |
+| Maven-Artifact                 | Gradle VersionNumber           | Gradle Ivy-VersionInfo         | SemVer                         | semver4j                       | versioncompare                 | ModuleDescriptor.Version       |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-final`                  | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-SNAPSHOT`               | `1.0.0-final`                  | `1.0.0-SNAPSHOT`               | `1.0.0-SNAPSHOT`               |
+| `1.0.0-rc.1`                   | `1.0.0-ga`                     | `1.0.0-rc.1`                   | `1.0.0-final`                  | `1.0.0-ga`                     | `1.0.0-snapshot`               | `1.0.0-final`                  |
+| `1.0.0-rc.1.8+3bb4161`         | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-ga`                     | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-ga`                     |
+| `1.0.0-rc.1.10+4cc4322`        | `1.0.0-rc.1`                   | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0-rc.1`                   | `1.0.0-rc.1`                   | `1.0.0-milestone.1.0+2cc3321`  |
+| `1.0.0-SNAPSHOT`               | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-SNAPSHOT`               | `1.0.0-rc.1`                   | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-rc.1`                   |
+| `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-snapshot`               | `1.0.0-rc.1.8+3bb4161`         | `1.0.0-rc.1.10+4cc4322`        | `1.0.0`                        | `1.0.0-rc.1.8+3bb4161`         |
+| `1.0.0`                        | `1.0.0-release`                | `1.0.0-final`                  | `1.0.0-rc.1.10+4cc4322`        | `1.0.0-release`                | `1.0.0-sp`                     | `1.0.0-rc.1.10+4cc4322`        |
+| `1.0.0-final`                  | `1.0.0-SNAPSHOT`               | `1.0.0-ga`                     | `1.0.0-release`                | `1.0.0-snapshot`               | `1.0.0-release`                | `1.0.0-release`                |
+| `1.0.0-ga`                     | `1.0.0-snapshot`               | `1.0.0-release`                | `1.0.0-snapshot`               | `1.0.0-SNAPSHOT`               | `1.0.0-final`                  | `1.0.0-snapshot`               |
+| `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-sp`                     | `1.0.0-ga`                     | `1.0.0-sp`                     |
+| `1.0.0-release`                | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0`                        | `1.0.0-milestone.1.0+2cc3321`  | `1.0.0`                        |
 
-4 implementations, 4 truths. 
+7 implementations, 7 truths. 
 
 * There are two different implementations inside the Gradle API (both within internal packages, so not for publis use), returning different results
 * SemVer follows the specification strictly, but the two biggest frameworks in that area (Maven+Gradle) decided to do something on top. Gradle [explained that also in its docu](https://docs.gradle.org/current/userguide/single_versions.html#version_ordering).

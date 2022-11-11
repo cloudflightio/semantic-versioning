@@ -46,7 +46,10 @@ fun main() {
             versions = versions.map { Semver(it) }.sorted().map { it.toString() }),
         SortedVersionList(
             name = "versioncompare",
-            versions = versions.map { io.github.g00fy2.versioncompare.Version(it) }.sorted().map { it.toString() })
+            versions = versions.map { io.github.g00fy2.versioncompare.Version(it) }.sorted().map { it.toString() }),
+        SortedVersionList(
+            name = "ModuleDescriptor.Version",
+            versions = versions.map { java.lang.module.ModuleDescriptor.Version.parse(it) }.sorted().map { it.toString() })
     )
 
     println("| " + table.joinToString(separator = " | ") { it.name.toColumn() } + " |")
