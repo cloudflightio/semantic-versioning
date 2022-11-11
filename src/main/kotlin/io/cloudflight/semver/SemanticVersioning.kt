@@ -1,6 +1,7 @@
 package io.cloudflight.semver
 
 import com.github.zafarkhaja.semver.Version
+import com.vdurmont.semver4j.Semver
 import org.apache.maven.artifact.versioning.ComparableVersion
 import org.gradle.api.internal.artifacts.ivyservice.ivyresolve.VersionInfo
 import org.gradle.api.internal.artifacts.ivyservice.ivyresolve.strategy.DefaultVersionComparator
@@ -39,7 +40,13 @@ fun main() {
                 .map { it.version.toString() }),
         SortedVersionList(
             name = "SemVer",
-            versions = versions.map { Version.valueOf(it) }.sorted().map { it.toString() })
+            versions = versions.map { Version.valueOf(it) }.sorted().map { it.toString() }),
+        SortedVersionList(
+            name = "semver4j",
+            versions = versions.map { Semver(it) }.sorted().map { it.toString() }),
+        SortedVersionList(
+            name = "versioncompare",
+            versions = versions.map { io.github.g00fy2.versioncompare.Version(it) }.sorted().map { it.toString() })
     )
 
     println("| " + table.joinToString(separator = " | ") { it.name.toColumn() } + " |")
