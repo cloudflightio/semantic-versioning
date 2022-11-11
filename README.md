@@ -49,7 +49,7 @@ The output is quite surprising:
 
 4 implementations, 4 truths. 
 
-* There are two different implementation inside the Gradle API, returning different results
+* There are two different implementations inside the Gradle API (both within internal packages, so not for publis use), returning different results
 * SemVer follows the specification strictly, but the two biggest frameworks in that area (Maven+Gradle) decided to do something on top. Gradle [explained that also in its docu](https://docs.gradle.org/current/userguide/single_versions.html#version_ordering).
   
 So especially if you're using any of those libraries, sorting numbers, or probably rely on something like the *latest* version, be careful!
